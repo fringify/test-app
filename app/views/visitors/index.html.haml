@@ -1,3 +1,17 @@
-.row
-  .col-sm-12
-    = "Dan"
+
+- @blogs.each do |blog|
+  .row
+    .col-sm-3
+      = image_tag blog.image_link
+    .col-sm-9
+      .row-fluid
+        .col-sm-12
+          = link_to blog.link do
+            = blog.title
+        .col-sm-12
+          = blog.description
+
+:sass
+  .row
+    margin-bottom: 10px
+  
