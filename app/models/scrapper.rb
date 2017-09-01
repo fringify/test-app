@@ -11,12 +11,11 @@ class Scrapper
     doc = Nokogiri::HTML(open(URL))
 
     articles = doc.search("article").reverse[0..LIMIT - 1]
-    result = articles.collect do |article|
-      x = Scrapper.new
-      x.body = article
-      x
+    articles.collect do |article|
+      blog = Scrapper.new
+      blog.body = article
+      blog
     end
-    result
   end
 
   def entry_title
@@ -38,6 +37,5 @@ class Scrapper
   def description
     body.search(".post-meta").text.gsub("\n", "").gsub("\t", "")
   end
-
 
 end
